@@ -19,22 +19,22 @@
 		"@tanstack/react-query": "^5.40.0",
 		"@tanstack/react-query-devtools": "^5.40.0",
 		"autoprefixer": "^10.4.19",
-		"axios": "^1.6.8",
+		"axios": "^1.7.2",
 		"postcss": "^8.4.38",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
 		"react-hot-toast": "^2.4.1",
-		"react-router-dom": "^6.22.3",
+		"react-router-dom": "^6.23.1",
 		"tailwindcss": "^3.4.3"
 	},
 	"devDependencies": {
 		"@shared/vitest-presets": "*",
 		"@testing-library/react": "^15.0.7",
-		"@types/node": "^20.12.7",
-		"@types/react": "^18.2.66",
-		"@types/react-dom": "^18.2.22",
-		"@vitejs/plugin-react-swc": "^3.5.0",
-		"typescript": "^5.2.2",
-		"vite": "^5.2.0"
+		"@types/node": "^20.12.13",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"@vitejs/plugin-react-swc": "^3.7.0",
+		"typescript": "^5.4.5",
+		"vite": "^5.2.12"
 	}
 }
