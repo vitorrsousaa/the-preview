@@ -24,8 +24,9 @@ This Turborepo includes the following packages and apps:
 - `blog`: a [Remix](https://remix.run/) blog
 - `@shared/vitest-presets`: Vitest configurations
 - `@shared/logger`: isomorphic logger (a small wrapper around console.log)
-- `@shared/ui`: a dummy React UI library with tailwindcss
-- `@shared/typescript-config`: tsconfig.json's used throughout the monorepo
+- `@shared/ui`: a dummy React UI library with tailwindcss and shadcn
+- `@shared/config-typescript`: tsconfig.json's used throughout the monorepo
+- `@shared/config-css`: css config files used throughout the monorepo
 
 Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
 
@@ -36,3 +37,17 @@ This Turborepo has some additional tools already setup for you:
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [BiomeJS](https://biomejs.dev/pt-br/) for code linting as formatting
 - [Vitest](https://vitest.dev/) test runner for all things JavaScript
+
+#### BiomeJS
+
+You can format files and directories using `format` command:
+
+```bash
+yarn format
+```
+
+You can lint and apply safe fixes to files and directories using the `lint` command:
+
+```bash
+yarn lint
+```
