@@ -1,4 +1,5 @@
 {
+	"name": "monorepo-template",
 	"private": true,
 	"scripts": {
 		"build": "turbo run build",
