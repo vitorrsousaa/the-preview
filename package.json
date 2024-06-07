@@ -1,25 +1,25 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "clean": "turbo run clean",
-    "dev": "turbo run dev",
-    "format": "turbo run format",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "check": "turbo run check",
-    "typecheck": "turbo run typecheck"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.7.0",
-    "turbo": "latest"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "yarn@1.22.17",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"clean": "turbo run clean",
+		"dev": "turbo run dev",
+		"format": "turbo run format --",
+		"lint": "turbo run lint --",
+		"test": "turbo run test",
+		"check": "turbo run check",
+		"typecheck": "turbo run typecheck"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.7.0",
+		"@commitlint/cli": "^19.3.0",
+		"@commitlint/config-conventional": "^19.2.2",
+		"lefthook": "^1.6.15",
+		"turbo": "latest"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"packageManager": "yarn@1.22.17",
+	"workspaces": ["apps/*", "packages/*"]
 }
