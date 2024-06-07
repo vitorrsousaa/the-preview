@@ -36,22 +36,16 @@ This monorepo consist in these packages:
 
 ### Lib
 
-- [Lib](/docs/packages/lib.md)
-- [Typescript](/packages/ts/README.md)
-- [Jest](/packages/jest-ts/README.md)
+- [Typescript](/packages/typescript.md)
+- [Vitest](/packages/vitest.md)
 
 ### Lib | `react`
 
-- [React Lib](/docs/packages/lib-react.md)
-- [Typescript](/packages/ts-react/README.md)
-- [ESLint](/packages/eslint-ts-react/README.md)
-- [Jest](/packages/jest-ts-react/README.md)
+- [React Lib](https://react.dev/)
 
 ### App | `next`
 
-- [Next App](/docs/packages/app-next.md)
-- [Typescript](/packages/ts-next/README.md)
-- [ESLint](/packages/eslint-ts-next/README.md)
+- [Next App](https://nextjs.org/)
 
 Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
 
