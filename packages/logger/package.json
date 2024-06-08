@@ -4,14 +4,11 @@
 	"private": true,
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"files": [
-		"dist/**"
-	],
+	"files": ["dist/**"],
 	"scripts": {
 		"build": "tsup",
 		"dev": "tsup --watch",
 		"lint": "biome lint --apply ./src",
-		"typecheck": "tsc --noEmit",
 		"test": "vitest run",
 		"test:watch": "vitest run --watch",
 		"format": "biome format --write ./src",
