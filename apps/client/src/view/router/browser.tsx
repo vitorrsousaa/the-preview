@@ -1,4 +1,6 @@
-import { Home } from "@/pages/Home";
+import { ROUTES } from "@/config/routes";
+import { Dashboard } from "@/screens/dashboard";
+import { Settings } from "@/screens/settings";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export function Router() {
@@ -6,7 +8,8 @@ export function Router() {
 		<BrowserRouter>
 			<Routes>
 				<Route path="*" element={<>Error page</>} />
-				<Route path="/" element={<Home />} />
+				<Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+				<Route path={ROUTES.SETTINGS} element={<Settings />} />
 			</Routes>
 		</BrowserRouter>
 	);

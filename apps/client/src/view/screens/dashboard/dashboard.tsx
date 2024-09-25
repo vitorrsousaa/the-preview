@@ -11,7 +11,7 @@ const buttonVariants = [
 	"link",
 ] as const;
 
-export function Home() {
+export function Dashboard() {
 	return (
 		<div className="mt-8 items-center space-y-4">
 			<div className="flex w-full justify-center text-3xl font-bold gap-2">
