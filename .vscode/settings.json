@@ -3,6 +3,7 @@
 		"shared",
 		"docs",
 		"packages",
-		"client"
+		"client",
+		"api"
 	]
 }
