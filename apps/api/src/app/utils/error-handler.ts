@@ -1,4 +1,4 @@
-import type { IResponse } from "@interfaces/http";
+import type { IResponse } from "@application/interfaces/http";
 import { AppError } from "../errors/app-error";
 import { ServerError } from "../errors/server-error";
 

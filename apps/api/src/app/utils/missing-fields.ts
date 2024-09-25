@@ -1,6 +1,5 @@
-import { ZodError } from "@errors/zod";
-import type { IResponse } from "@interfaces/http";
-
+import { ZodError } from "@application/errors/zod";
+import type { IResponse } from "@application/interfaces/http";
 import type * as z from "zod";
 
 type IReturnErrorMissingFieldOutput<S extends z.ZodType> = [
