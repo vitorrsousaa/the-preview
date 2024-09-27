@@ -11,6 +11,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			"@/screens": path.resolve(__dirname, "./src/view/screens"),
+			"@/ui": path.resolve(__dirname, "./src/view/ui"),
 			"@/components": path.resolve(__dirname, "./src/view/components"),
 			"@/utils": path.resolve(__dirname, "./src/app/utils"),
 			"@/services": path.resolve(__dirname, "./src/app/services"),
@@ -18,6 +19,7 @@ export default defineConfig({
 			"@/contexts": path.resolve(__dirname, "./src/app/contexts"),
 			"@/config": path.resolve(__dirname, "./src/app/config"),
 			"@/libs": path.resolve(__dirname, "./src/app/libs"),
+			"@/entities": path.resolve(__dirname, "./src/app/entities"),
 		},
 	},
 });

@@ -1,3 +1,4 @@
+import { AuthProvider } from "@/contexts/auth";
 import { QueryClientProvider } from "@/libs/query";
 import { Toaster } from "react-hot-toast";
 import { Router } from "./router/browser";
@@ -5,9 +6,11 @@ import { Router } from "./router/browser";
 function App() {
 	return (
 		<QueryClientProvider>
-			<Router />
+			<AuthProvider>
+				<Router />
 
-			<Toaster />
+				<Toaster />
+			</AuthProvider>
 		</QueryClientProvider>
 	);
 }

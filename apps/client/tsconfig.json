@@ -34,6 +34,9 @@
 			"@/components/*": [
 				"./src/view/components/*"
 			],
+			"@/ui/*": [
+				"./src/view/ui/*"
+			],
 			"@/utils/*": [
 				"./src/app/utils/*"
 			],
@@ -51,7 +54,10 @@
 			],
 			"@/libs/*": [
 				"./src/app/libs/*"
-			]
+			],
+			"@/entities/*": [
+				"./src/app/entities/*"
+			],
 		}
 	},
 	"include": [
