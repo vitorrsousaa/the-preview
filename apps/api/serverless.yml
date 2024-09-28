@@ -98,12 +98,10 @@ custom:
     concurrency: 10 
     
 functions:
-  cognitoCustomMessage:
-    handler: src/server/functions/auth/cognitoCustomMessage.handler
+  signinWithGoogle:
+    handler: src/server/functions/auth/signin-with-google.handler
     events:
-      - cognitoUserPool:
-          pool: ProjectNameUserPool-${self:provider.stage}
-          trigger: CustomMessage
-          existing: true
-          forceDeploy: true
+      - httpApi:
+          method: POST
+          path: /auth/google
   

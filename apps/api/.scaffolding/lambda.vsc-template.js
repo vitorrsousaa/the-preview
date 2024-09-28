@@ -6,6 +6,12 @@
 
 	const toCamelCase = (str) =>
 		toPascalCase(str).replace(/^./, (firstLetter) => firstLetter.toLowerCase());
+  
+  const toKebabCase = (str) => 
+    str
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, ''); 
 
 	return {
 		userInputs: [
@@ -18,7 +24,7 @@
 		template: [
 			{
 				type: "folder",
-				name: (inputs) => `${toCamelCase(inputs.name)}`,
+				name: (inputs) => `${toKebabCase(inputs.name)}`,
 				children: [
 					{
 						type: "file",
@@ -35,7 +41,7 @@ export async function handler(event: APIGatewayProxyEventV2) {
 		
 	return responseAdapter(response);
 }
-		`,
+`,
 					},
 					{
 						type: "file",

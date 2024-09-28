@@ -16,15 +16,18 @@
 		"format": "biome format --write ./src"
 	},
 	"dependencies": {
+		"@aws-sdk/client-dynamodb": "^3.658.1",
 		"@aws-sdk/lib-dynamodb": "^3.658.0",
 		"@shared/logger": "*",
 		"dotenv": "^16.4.5",
+		"jsonwebtoken": "^9.0.2",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
 		"@shared/typescript-config": "*",
 		"@shared/vitest-presets": "*",
 		"@types/aws-lambda": "^8.10.145",
+		"@types/jsonwebtoken": "^9.0.7",
 		"@types/node": "^20.11.24",
 		"@types/supertest": "^6.0.2",
 		"serverless-esbuild": "^1.54.1",

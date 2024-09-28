@@ -6,6 +6,12 @@
 
 	const toCamelCase = (str) =>
 		toPascalCase(str).replace(/^./, (firstLetter) => firstLetter.toLowerCase());
+	
+	const toKebabCase = (str) => 
+    str
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, ''); 
 
 	return {
 		userInputs: [
@@ -18,7 +24,7 @@
 		template: [
 			{
 				type: "folder",
-				name: (inputs) => `${toCamelCase(inputs.name)}`,
+				name: (inputs) => `${toKebabCase(inputs.name)}`,
 				children: [
 					{
 						type: "file",
@@ -34,7 +40,6 @@ import * as z from 'zod';
 
 export const ${toPascalCase(inputs.name)}InputServiceSchema = z.object({
   userId: z.string().uuid(),
-  athleteId: z.string().uuid(),
 });
 
 export type T${toPascalCase(inputs.name)} = z.infer<typeof ${toPascalCase(
@@ -43,7 +48,7 @@ export type T${toPascalCase(inputs.name)} = z.infer<typeof ${toPascalCase(
 
 export type I${toPascalCase(inputs.name)}Input = T${toPascalCase(inputs.name)};
 
-export interface I${toPascalCase(inputs.name)}Output {
+export type I${toPascalCase(inputs.name)}Output = {
   name: string;
 }
 

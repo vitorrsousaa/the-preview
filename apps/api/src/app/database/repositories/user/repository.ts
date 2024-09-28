@@ -15,6 +15,7 @@ export class UserRepository implements IUserRepository {
 			email: createInput.email,
 			name: createInput.name,
 			id: createInput.id,
+			picture: createInput.picture,
 			created_at: now,
 			updated_at: now,
 			PK,
@@ -28,7 +29,7 @@ export class UserRepository implements IUserRepository {
 		return this.mapToDomain(newUser);
 	}
 
-	async getByEmail(email: string): Promise<User | undefined> {
+	async getById(email: string): Promise<User | undefined> {
 		const { PK, SK } = this.getKeys(email);
 
 		const item = await this.dbInstance.get<UserDynamoDB>({
@@ -45,13 +46,14 @@ export class UserRepository implements IUserRepository {
 			name: item.name,
 			createdAt: item.created_at,
 			updatedAt: item.updated_at,
+			picture: item.picture,
 		};
 	}
 
-	private getKeys(email: string): { PK: string; SK: string } {
+	private getKeys(id: string): { PK: string; SK: string } {
 		return {
-			SK: `PROFILE|${email}`,
-			PK: "USER",
+			SK: `USER|${id}`,
+			PK: "PROFILE",
 		};
 	}
 }

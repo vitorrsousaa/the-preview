@@ -8,5 +8,6 @@ export type User = Prettify<
 	{
 		email: string;
 		name: string;
+		picture: string;
 	} & BaseEntity
 >;
