@@ -55,3 +55,16 @@ This Turborepo has some additional tools already setup for you:
 
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [Vitest](https://vitest.dev/) test runner for all things JavaScript
+
+## 🎲 Running application
+
+```bash
+# Clone this repository
+$ git clone
+
+# Install the dependencies
+yarn install
+
+# Running all packages and apps
+yarn dev
+```
