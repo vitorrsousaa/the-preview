@@ -1,6 +1,6 @@
-const app = "app";
+const APP_NAME = "APP_NAME";
 
 export const STORAGE_KEYS = {
-	THEME: `${app}:theme`,
-	ACCESS_TOKEN: `${app}:access_token`,
+	THEME: `${APP_NAME}:theme`,
+	ACCESS_TOKEN: `${APP_NAME}:access_token`,
 } as const;

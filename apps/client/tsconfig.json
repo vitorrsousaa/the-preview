@@ -31,6 +31,9 @@
 			"@/screens/*": [
 				"src/view/screens/*"
 			],
+			"@/layouts/*": [
+				"src/view/layouts/*"
+			],
 			"@/components/*": [
 				"./src/view/components/*"
 			],
@@ -48,6 +51,9 @@
 			],
 			"@/contexts/*": [
 				"./src/app/contexts/*"
+			],
+			"@/storage/*": [
+				"./src/app/storage/*"
 			],
 			"@/config/*": [
 				"./src/app/config/*"

@@ -1,12 +1,11 @@
+import { env } from "@/config/environment";
 import { STORAGE_KEYS } from "@/config/storages";
 import { delay } from "@/utils/delay";
 import axios from "axios";
 import { AppError } from "../errors/app-error";
 
-const { VITE_API_BASE_URL, DEV: IS_DEVELOPMENT } = import.meta.env;
-
 export const httpClient = axios.create({
-	baseURL: VITE_API_BASE_URL,
+	baseURL: env.VITE_API_BASE_URL,
 });
 
 httpClient.interceptors.request.use((config) => {
@@ -31,14 +30,14 @@ httpClient.interceptors.request.use((config) => {
 
 httpClient.interceptors.response.use(
 	async (data) => {
-		if (IS_DEVELOPMENT) {
+		if (env.IS_DEVELOPMENT) {
 			await delay();
 		}
 
 		return data;
 	},
 	async (error) => {
-		if (IS_DEVELOPMENT) {
+		if (env.IS_DEVELOPMENT) {
 			await delay();
 		}
 

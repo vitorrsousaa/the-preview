@@ -1,5 +1,6 @@
-const DATABASE_NAME = "@app";
+const APP_NAME = "@app";
 
 export const QUERY_KEYS = {
-	SETTINGS: [`${DATABASE_NAME}:SETTINGS`],
+	SETTINGS: [`${APP_NAME}:SETTINGS`],
+	PROFILE: [`${APP_NAME}:PROFILE`],
 };
