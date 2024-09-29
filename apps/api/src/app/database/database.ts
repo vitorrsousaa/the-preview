@@ -77,7 +77,7 @@ export class DatabaseClient implements IDatabaseClient {
 		await this.dynamoClient.send(command);
 	}
 
-	async delete(args: DeleteCommandInput) {
+	async delete(args: Omit<DeleteCommandInput, "TableName">) {
 		const command = new DeleteCommand({
 			TableName: this.TABLE_NAME,
 			...args,
@@ -86,7 +86,7 @@ export class DatabaseClient implements IDatabaseClient {
 		await this.dynamoClient.send(command);
 	}
 
-	async update(args: UpdateCommandInput) {
+	async update(args: Omit<UpdateCommandInput, "TableName">) {
 		const updateCommand = new UpdateCommand({
 			TableName: this.TABLE_NAME,
 			...args,
@@ -121,7 +121,9 @@ export class DatabaseClient implements IDatabaseClient {
 		return Items as T | undefined;
 	}
 
-	async get<T>(args: GetCommandInput): Promise<T | undefined> {
+	async get<T>(
+		args: Omit<GetCommandInput, "TableName">,
+	): Promise<T | undefined> {
 		const command = new GetCommand({
 			TableName: this.TABLE_NAME,
 			...args,
