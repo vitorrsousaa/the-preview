@@ -13,8 +13,5 @@ export function requestAdapter(
 		headers: event.headers,
 		params: event.pathParameters ?? {},
 		queryParams: event.queryStringParameters ?? {},
-		userId:
-			((event as APIGatewayProxyEventV2WithJWTAuthorizer).requestContext
-				.authorizer?.jwt.claims.sub as string) ?? null,
 	};
 }

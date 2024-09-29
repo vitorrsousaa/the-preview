@@ -6,6 +6,13 @@ export const envSchema = z.object({
 	AUTH_GOOGLE_CLIENT_ID: z.string(),
 	AUTH_GOOGLE_CLIENT_SECRET: z.string(),
 	AUTH_GOOGLE_REDIRECT_URI: z.string(),
+	STRIPE_PUBLISHABLE_KEY: z.string(),
+	STRIPE_SECRET_KEY: z.string(),
+	STRIPE_PRO_PRICE_ID: z.string(),
+	STRIPE_FREE_PRICE_ID: z.string(),
+	STRIPE_WEBHOOK_SECRET: z.string(),
+	STRIPE_FREE_QUOTA: z.string().refine((data) => !Number.isNaN(data)),
+	STRIPE_PRO_QUOTA: z.string().refine((data) => !Number.isNaN(data)),
 });
 
 dotenv.config();
@@ -26,6 +33,13 @@ export interface IConfig {
 	AUTH_GOOGLE_REDIRECT_URI: string;
 	ACCESS_TOKEN_EXPIRATION: number;
 	AUTH_SECRET: string;
+	STRIPE_SECRET_KEY: string;
+	STRIPE_FREE_PRICE_ID: string;
+	STRIPE_PUBLISHABLE_KEY: string;
+	STRIPE_WEBHOOK_SECRET: string;
+	STRIPE_PRO_PRICE_ID: string;
+	STRIPE_FREE_QUOTA: number;
+	STRIPE_PRO_QUOTA: number;
 }
 
 export class Config implements IConfig {
@@ -37,4 +51,15 @@ export class Config implements IConfig {
 		.AUTH_GOOGLE_REDIRECT_URI as string;
 	public ACCESS_TOKEN_EXPIRATION = 60 * 60 * 60 * 60 * 60; // 15hrs
 	public AUTH_SECRET = process.env.AUTH_SECRET as string;
+	public STRIPE_PUBLISHABLE_KEY = process.env.STRIPE_PUBLISHABLE_KEY as string;
+	public STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY as string;
+	public STRIPE_PRO_PRICE_ID = process.env.STRIPE_PRO_PRICE_ID as string;
+	public STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET as string;
+	public STRIPE_FREE_PRICE_ID = process.env.STRIPE_FREE_PRICE_ID as string;
+	public STRIPE_FREE_QUOTA = Number.parseInt(
+		process.env.STRIPE_FREE_QUOTA as string,
+	);
+	public STRIPE_PRO_QUOTA = Number.parseInt(
+		process.env.STRIPE_PRO_QUOTA as string,
+	);
 }

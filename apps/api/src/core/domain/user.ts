@@ -9,5 +9,9 @@ export type User = Prettify<
 		email: string;
 		name: string;
 		picture: string;
+		customerId: string;
+		subscriptionId: string;
+		subscriptionStatus: string;
+		priceId: string;
 	} & BaseEntity
 >;

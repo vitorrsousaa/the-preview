@@ -104,4 +104,10 @@ functions:
       - httpApi:
           method: POST
           path: /auth/google
+  getProfile:
+    handler: src/server/functions/auth/profile.handler
+    events:
+      - httpApi:
+          method: GET
+          path: /auth/profile
   

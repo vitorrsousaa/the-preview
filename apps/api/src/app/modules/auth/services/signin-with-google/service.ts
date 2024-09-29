@@ -1,6 +1,7 @@
 import type { IUserRepository } from "@application/database/repositories/user";
 import type { IService } from "@application/interfaces/service";
 import type { IGoogleAuthProvider } from "@application/providers/google";
+import type { IPaymentProvider } from "@application/providers/payments";
 import type { ITokenProvider } from "@application/providers/token";
 import * as z from "zod";
 import { EmailNotVerified } from "../../errors/email-not-verified";
@@ -29,6 +30,7 @@ export class SigninWithGoogleService implements ISigninWithGoogleService {
 		private readonly googleProvider: IGoogleAuthProvider,
 		private readonly userRepository: IUserRepository,
 		private readonly tokenProvider: ITokenProvider,
+		private readonly paymentProvider: IPaymentProvider,
 	) {}
 
 	async execute(
@@ -54,11 +56,21 @@ export class SigninWithGoogleService implements ISigninWithGoogleService {
 			};
 		}
 
+		const { customer, subscription, freePlan } =
+			await this.paymentProvider.createCustomer({
+				name: googleUser.name,
+				email: googleUser.email,
+			});
+
 		const user = await this.userRepository.create({
 			email: googleUser.email,
 			name: googleUser.name,
 			id: googleUser.id,
 			picture: googleUser.picture,
+			customerId: customer.id,
+			subscriptionId: subscription.id,
+			subscriptionStatus: subscription.status,
+			priceId: freePlan.priceId,
 		});
 
 		const jwtAccessToken = this.tokenProvider.generate(user.id);
