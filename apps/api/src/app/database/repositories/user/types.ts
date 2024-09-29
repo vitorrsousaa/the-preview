@@ -1,4 +1,4 @@
-import type { TBaseEntity, TBaseIndexes } from "@application/database/database";
+import type { TBaseEntity, TBaseIndexes } from "@application/database/entities";
 import type { Prettify } from "@application/utils/types";
 import type { User } from "@core/domain/user";
 

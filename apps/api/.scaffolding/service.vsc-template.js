@@ -71,42 +71,6 @@ export class ${toPascalCase(inputs.name)}Service implements I${toPascalCase(
 }
 `,
 					},
-					{
-						type: "file",
-						name: "service.spec.ts",
-						content: (inputs) => `import { type Mocked, vi } from "vitest";
-import { 
-	type I${toPascalCase(inputs.name)}Input,
-	type I${toPascalCase(inputs.name)}Service,
-	${toPascalCase(inputs.name)}Service 
-} from './service';
-
-describe('Service:${toPascalCase(inputs.name)}', () => {
-	let service: I${toPascalCase(inputs.name)}Service;
-	const inputData: I${toPascalCase(inputs.name)}Input = {
-		name: 'John Doe'
-	}
-		
-	beforeEach(() => {
-		service = new ${toPascalCase(inputs.name)}Service();
-	});
-	
-	afterEach(() =>{
-		vi.clearAllMocks();
-	});
-	
-	it('Should correct', async () =>{
-		// Arrange
-		
-		// Act
-		await service.execute(inputData);
-		
-		// Assert
-		expect(true).toBe(true);
-	})
-})
-`,
-					},
 				],
 			},
 		],

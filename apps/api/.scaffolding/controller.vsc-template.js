@@ -37,14 +37,16 @@
 						name: "controller.ts",
 						content: (inputs) => `import type { IController } from "@application/interfaces/controller";
 import type { IRequest, IResponse } from "@application/interfaces/http";
+import { IAuthenticationMiddleware } from "@application/shared/middlewares/authentication";
 import { errorHandler } from "@application/utils/error-handler";
 import { missingFields } from "@application/utils/missing-fields";
 
 export class ${toPascalCase(inputs.name)}Controller implements IController {
-  constructor() {}
+  constructor(private readonly authenticationMiddleware: IAuthenticationMiddleware) {}
   async handle(request: IRequest): Promise<IResponse> {
     try {
-      const [status, parsedBody] = missingFields(Schema, request.body)
+			const { userId } = await this.authenticationMiddleware.handle(request)
+      const [status, parsedBody] = missingFields(Schema, { ...request.body, userId });
       
 			if (!status) return parsedBody;
 
@@ -59,73 +61,6 @@ export class ${toPascalCase(inputs.name)}Controller implements IController {
     }
   }
 }
-`,
-					},
-					{
-						type: "file",
-						name: "controller.spec.ts",
-						content: (inputs) =>
-							`import type { IRequest } from "@application/interfaces/http";
-import type { Mocked } from "vitest";
-
-import { ${toPascalCase(inputs.name)}Controller } from './controller';
-
-describe('Controller: ${toPascalCase(inputs.name)}', () => {
-  let mockRequest: IRequest
-  let controller: ${toPascalCase(inputs.name)}Controller;
-  let mockedService: Mocked<I${toPascalCase(inputs.name)}Service>;
-
-  beforeEach(() => {
-    mockRequest = {
-			body: {},
-			headers: {},
-			params: {},
-			queryParams: {},
-			userId: null,
-		};
-
-    mockedService = {
-			execute: vi.fn(),
-		};
-
-    controller = new ${toPascalCase(inputs.name)}Controller(mockedService);
-  });
-
-  afterEach(() => {
-    vi.clearAllMocks();
-    mockRequest.body = {};
-  })
-
-  it("should throw error when missing fields", async () => {
-		// Arrange
-		mockRequest.body = {
-			email: undefined,
-		};
-
-		// Act
-		const result = await controller.handle(mockRequest);
-
-		// Assert
-		expect(result).toMatchObject({ statusCode: 422 });
-	});
-
-  it("should return response with correct return of service when fields are ok", async () => {
-		// Arrange
-		mockedService.execute.mockResolvedValue({ });
-    mockRequest.body = {
-    
-    };
-
-		// Act
-		const result = await controller.handle(mockRequest);
-
-		// Assert
-		expect(result).toMatchObject({
-			statusCode: 200,
-			body: {  },
-		});
-	});
-});
 `,
 					},
 				],

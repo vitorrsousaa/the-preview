@@ -17,19 +17,8 @@ import {
 	UpdateCommand,
 	type UpdateCommandInput,
 } from "@aws-sdk/lib-dynamodb";
+import type { TBaseEntity, TIndexes } from "./entities";
 import { DATABASE_TABLE } from "./table";
-
-export type TBaseIndexes = {
-	gsi1pk: string;
-	gsi1sk: string;
-};
-
-export type TBaseEntity = {
-	SK: string;
-	PK: string;
-};
-
-export type TIndexes = "GSI1Index";
 
 export interface IDatabaseClient {
 	create<T extends TBaseEntity>(attributes: T): Promise<void>;

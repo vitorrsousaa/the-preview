@@ -1,7 +1,5 @@
-import type {
-	IDatabaseClient,
-	TBaseIndexes,
-} from "@application/database/database";
+import type { IDatabaseClient } from "@application/database/database";
+import type { TBaseIndexes } from "@application/database/entities";
 import type { User } from "@core/domain/user";
 import type { IUserRepository, UserDynamoDB } from "./types";
 
