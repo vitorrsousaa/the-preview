@@ -1,5 +1,5 @@
 export const ROUTES = {
-	DASHBOARD: "/",
+	DASHBOARD: "/dashboard",
 	SETTINGS: "/configuracoes",
 	SIGNIN: "/login",
 	GOOGLE_CALLBACK: "/google/callback",
