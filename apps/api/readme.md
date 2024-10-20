@@ -22,9 +22,13 @@ After that, you must be access the `src/app/config/environment.ts`, and update t
 
 After that, add a `.env` file to the root folder, according to the `env.example` of this repository.
 
-For publish lambda functions, is necessary to set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in your `.env` file.
+For publish lambda functions, is necessary to set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in your `.env` file. These two keys can be obtained in your personal account.
 
-These two keys can be obtained in your personal account.
+You must create a unique `.env` file for each stage. For example, for the `dev` stage, you should create a `.env.dev` file and put all dev environemnt variables.
+
+## Payment Provider
+
+We use stripe by default, but the payment provider is agnostic, so, you can change the stripe and all aplication is working correctly. 
 
 ## Deployment
 

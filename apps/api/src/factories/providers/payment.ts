@@ -1,7 +1,7 @@
-import { PaymentProvider } from "@application/providers/payments";
+import { PaymentProvider } from "@application/providers/payment";
 import { makeConfigEnvironment } from "@factories/config/environment";
 import { makeStripeClient } from "@factories/libs/stripe";
 
-export function makePaymentsProvider() {
+export function makePaymentProvider() {
 	return new PaymentProvider(makeStripeClient(), makeConfigEnvironment());
 }

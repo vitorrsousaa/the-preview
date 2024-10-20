@@ -13,6 +13,20 @@ export interface CreateCustomerOutputs {
 	};
 }
 
+export interface CreateCheckoutSessionInput {
+	userId: string;
+	email: string;
+	name: string;
+}
+
 export interface IPaymentProvider {
 	createCustomer(inputs: CreateCustomerInputs): Promise<CreateCustomerOutputs>;
+	createCheckoutSession(
+		inputs: CreateCheckoutSessionInput,
+	): Promise<{ url: string }>;
+	generateHeader(header: string): string;
+	constructEvent({
+		body,
+		signature,
+	}: { body: string; signature: string }): Stripe.Event;
 }

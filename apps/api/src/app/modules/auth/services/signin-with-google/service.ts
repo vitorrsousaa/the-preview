@@ -1,7 +1,7 @@
 import type { IUserRepository } from "@application/database/repositories/user";
 import type { IService } from "@application/interfaces/service";
 import type { IGoogleAuthProvider } from "@application/providers/google";
-import type { IPaymentProvider } from "@application/providers/payments";
+import type { IPaymentProvider } from "@application/providers/payment";
 import type { ITokenProvider } from "@application/providers/token";
 import * as z from "zod";
 import { EmailNotVerified } from "../../errors/email-not-verified";

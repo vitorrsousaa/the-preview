@@ -5,6 +5,7 @@ frameworkVersion: '3'
 
 plugins:
   - serverless-esbuild
+  - serverless-dotenv-plugin
   
 package:
   individually: true
@@ -37,6 +38,19 @@ provider:
             - !Sub ${ProjectNameTable.Arn}/index/GSI1Index
   environment:
     STAGE: ${self:provider.stage}
+    STRIPE_PUBLISHABLE_KEY: ${env:STRIPE_PUBLISHABLE_KEY}
+    STRIPE_FREE_PRICE_ID: ${env:STRIPE_FREE_PRICE_ID}
+    STRIPE_SECRET_KEY: ${env:STRIPE_SECRET_KEY}
+    STRIPE_WEBHOOK_SECRET: ${env:STRIPE_WEBHOOK_SECRET}
+    STRIPE_PRICE_ID: ${env:STRIPE_PRICE_ID}
+    STRIPE_PRO_PRICE_ID: ${env:STRIPE_PRO_PRICE_ID}
+    STRIPE_PRO_QUOTA: ${env:STRIPE_PRO_QUOTA}
+    STRIPE_FREE_QUOTA: ${env:STRIPE_FREE_QUOTA}
+    REDIRECT_URL_STRIPE: ${env:REDIRECT_URL_STRIPE}
+    AUTH_GOOGLE_CLIENT_ID: ${env:AUTH_GOOGLE_CLIENT_ID}
+    AUTH_GOOGLE_CLIENT_SECRET: ${env:AUTH_GOOGLE_CLIENT_SECRET}
+    AUTH_GOOGLE_REDIRECT_URI: ${env:AUTH_GOOGLE_REDIRECT_URI}
+    AUTH_SECRET: ${env:AUTH_SECRET}
   httpApi:
     cors:
       allowedOrigins:
@@ -82,6 +96,8 @@ resources:
               ProjectionType: ALL
         
 custom:
+  dotenv:
+    path: ${file(./.env.${self:provider.stage})}
   stages:
     - dev
     - prod
@@ -110,4 +126,10 @@ functions:
       - httpApi:
           method: GET
           path: /auth/profile
+  createCheckoutSession:
+    handler: src/server/functions/payment/create-checkout.handler
+    events:
+      - httpApi:
+          method: POST
+          path: /payment/create-checkout
   

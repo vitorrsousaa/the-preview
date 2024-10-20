@@ -13,6 +13,8 @@ export const envSchema = z.object({
 	STRIPE_WEBHOOK_SECRET: z.string(),
 	STRIPE_FREE_QUOTA: z.string().refine((data) => !Number.isNaN(data)),
 	STRIPE_PRO_QUOTA: z.string().refine((data) => !Number.isNaN(data)),
+	STRIPE_REDIRECT_URL: z.string(),
+	STRIPE_PRICE_ID: z.string(),
 });
 
 dotenv.config();
@@ -40,6 +42,8 @@ export interface IConfig {
 	STRIPE_PRO_PRICE_ID: string;
 	STRIPE_FREE_QUOTA: number;
 	STRIPE_PRO_QUOTA: number;
+	STRIPE_REDIRECT_URL: string;
+	STRIPE_PRICE_ID: string;
 }
 
 export class Config implements IConfig {
@@ -62,4 +66,6 @@ export class Config implements IConfig {
 	public STRIPE_PRO_QUOTA = Number.parseInt(
 		process.env.STRIPE_PRO_QUOTA as string,
 	);
+	public STRIPE_REDIRECT_URL = process.env.STRIPE_REDIRECT_URL as string;
+	public STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID as string;
 }

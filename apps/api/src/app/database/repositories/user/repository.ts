@@ -9,35 +9,19 @@ export class UserRepository implements IUserRepository {
 	async create(
 		createInput: Omit<User, "createdAt" | "updatedAt">,
 	): Promise<User> {
-		const { PK, SK } = this.getKeys(createInput.email);
-		const { gsi1pk, gsi1sk } = this.getSecondaryIndexes(
-			createInput.customerId,
-			createInput.subscriptionId,
-		);
 		const now = new Date().toISOString();
 
-		const newUser: UserDynamoDB = {
-			email: createInput.email,
-			name: createInput.name,
-			id: createInput.id,
-			picture: createInput.picture,
-			customer_id: createInput.customerId,
-			price_id: createInput.priceId,
-			subscription_id: createInput.subscriptionId,
-			subscription_status: createInput.subscriptionStatus,
-			created_at: now,
-			updated_at: now,
-			gsi1pk,
-			gsi1sk,
-			PK,
-			SK,
-		};
-
-		await this.dbInstance.create({
-			...newUser,
+		const dynamoUser = this.mapToDynamoDB({
+			...createInput,
+			createdAt: now,
+			updatedAt: now,
 		});
 
-		return this.mapToDomain(newUser);
+		await this.dbInstance.create({
+			...dynamoUser,
+		});
+
+		return this.mapToDomain(dynamoUser);
 	}
 
 	async getById(email: string): Promise<User | undefined> {
@@ -62,6 +46,31 @@ export class UserRepository implements IUserRepository {
 			priceId: item.price_id,
 			subscriptionId: item.subscription_id,
 			subscriptionStatus: item.subscription_status,
+		};
+	}
+
+	private mapToDynamoDB(item: User): UserDynamoDB {
+		const { PK, SK } = this.getKeys(item.id);
+		const { gsi1pk, gsi1sk } = this.getSecondaryIndexes(
+			item.customerId,
+			item.subscriptionId,
+		);
+
+		return {
+			email: item.email,
+			id: item.id,
+			name: item.name,
+			created_at: item.createdAt,
+			updated_at: item.updatedAt,
+			picture: item.picture,
+			customer_id: item.customerId,
+			price_id: item.priceId,
+			subscription_id: item.subscriptionId,
+			subscription_status: item.subscriptionStatus,
+			gsi1pk,
+			gsi1sk,
+			PK,
+			SK,
 		};
 	}
 
