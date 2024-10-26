@@ -1,8 +1,10 @@
 import {
 	CaretSortIcon,
+	DesktopIcon,
 	GearIcon,
 	HamburgerMenuIcon,
 	HomeIcon,
+	MobileIcon,
 	QuestionMarkCircledIcon,
 } from "@radix-ui/react-icons";
 
@@ -15,8 +17,10 @@ const icons = {
 	hamburger: HamburgerMenuIcon,
 	home: HomeIcon,
 	settings: GearIcon,
-	questionMark: QuestionMarkCircledIcon,
+	question_mark: QuestionMarkCircledIcon,
 	double_arrow: CaretSortIcon,
+	desktop: DesktopIcon,
+	mobile: MobileIcon,
 } as const;
 
 export function Icon(props: IconProps) {

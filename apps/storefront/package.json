@@ -13,12 +13,13 @@
 		"format": "biome format --write ./src"
 	},
 	"dependencies": {
+		"@shared/config-css": "*",
 		"@shared/logger": "*",
 		"@shared/ui": "*",
-		"@shared/config-css": "*",
 		"next": "^14.1.1",
 		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"react-dom": "^18.2.0",
+		"react-dropzone": "^14.2.10"
 	},
 	"devDependencies": {
 		"@shared/typescript-config": "*",

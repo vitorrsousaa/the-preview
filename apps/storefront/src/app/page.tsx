@@ -1,6 +1,15 @@
 "use client";
-import { Input, Tabs, TabsContent, TabsList, TabsTrigger } from "@shared/ui";
+import {
+	cn,
+	Icon,
+	Input,
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@shared/ui";
 import { useState } from "react";
+import { useDropzone } from "react-dropzone";
 import { ImagePreview } from "./_components/image-preview";
 import { TimePreview } from "./_components/time-preview";
 
@@ -19,42 +28,92 @@ export default function Store(): JSX.Element {
 		"Enter your title to see how it looks",
 	);
 
-	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const file = e.target.files?.[0];
-		if (file) {
-			console.log("oir");
-			setImage(file);
-		}
-	};
-
 	const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.target.value);
 	};
+
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({
+		maxFiles: 3,
+		accept: {
+			"image/png": [".png"],
+			"image/jpeg": [".jpeg", ".jpg"],
+			"image/jpg": [".jpg"],
+		},
+		onDropAccepted: async (acceptedFiles: File[]) => {
+			// const acceptedFilesWithCorrectName = acceptedFiles.map((file) => ({
+			// 	...file,
+			// 	name: generateNameOfImage(file.name),
+			// }));
+
+			const file = acceptedFiles[0];
+			if (file) {
+				setImage(file);
+			}
+
+			// setImage(acceptedFiles)
+		},
+		multiple: false,
+	});
 
 	// o quadradinho de tempo do youtube tem a fonte roboto
 
 	return (
 		<div>
-			<div className="bg-slate-400 flex flex-col items-center justify-center pt-4 pb-4">
+			<div className="bg-slate-100/50 flex flex-col items-center justify-center pt-4 pb-4">
 				<header className="w-full flex items-center justify-center mb-12">
-					<h1>the preview</h1>
+					<h1 className="text-2xl font-bold">the preview</h1>
 				</header>
 				<div className="space-y-4">
-					<Input type="file" onChange={handleFileChange} />
-					<Input
-						type="text"
-						placeholder="Enter your title to see how it looks together"
-						value={title}
-						onChange={handleTextChange}
-					/>
+					<div>
+						<span className="text-sm font-medium leading-none">
+							Upload thumbnail
+						</span>
+						<div
+							{...getRootProps()}
+							className={cn(
+								"border h-40 w-80 rounded-md border-dashed transition-colors flex items-center justify-center flex-col cursor-pointer",
+								isDragActive && "bg-primary/20",
+							)}
+						>
+							<input {...getInputProps()} />
+							<Icon name="desktop" />
+							<span className="mt-2">Drop thumbnail image here</span>
+							<small className="text-muted-foreground text-center">
+								Or click to select a file.
+							</small>
+							<small className="text-muted-foreground">
+								Just PNG, JPG or JPEG.
+							</small>
+						</div>
+					</div>
+
+					<div>
+						<span className="text-sm font-medium leading-none">
+							Video title
+						</span>
+						<Input
+							type="text"
+							placeholder="Enter your title to see how it looks together"
+							value={title}
+							onChange={handleTextChange}
+						/>
+					</div>
 				</div>
 			</div>
 			{image && (
 				<div className="flex items-center flex-col pt-4 pb-4">
-					<Tabs defaultValue="desktop" className="w-[400px]">
-						<TabsList>
-							<TabsTrigger value="desktop">Desktop</TabsTrigger>
-							<TabsTrigger value="mobile">Mobile</TabsTrigger>
+					<Tabs defaultValue="desktop">
+						<TabsList className="w-full sm:w-[600px]">
+							<TabsTrigger value="desktop" className="w-full">
+								{" "}
+								<Icon name="desktop" className="mr-2" />
+								Desktop
+							</TabsTrigger>
+							<TabsTrigger value="mobile" className="w-full">
+								{" "}
+								<Icon name="mobile" className="mr-2" />
+								Mobile
+							</TabsTrigger>
 						</TabsList>
 						<TabsContent value="desktop" className="space-y-8">
 							<div>
@@ -131,7 +190,7 @@ export default function Store(): JSX.Element {
 									</div>
 								</div>
 							</div>
-							<div>
+							<div className="hidden sm:block">
 								<small className="text-xl font-semibold">
 									Channel Page: Large
 								</small>
@@ -183,7 +242,7 @@ export default function Store(): JSX.Element {
 									</div>
 								</div>
 							</div>
-							<div>
+							<div className="hidden sm:block">
 								<small className="text-xl font-semibold">History</small>
 								<div className="flex flex-row gap-3 w-full">
 									<div className="flex-shrink-0 w-[246px] h-[138px] relative">
@@ -222,7 +281,7 @@ export default function Store(): JSX.Element {
 									</div>
 								</div>
 							</div>
-							<div>
+							<div className="hidden sm:block">
 								<small className="text-xl font-semibold">
 									Watch Later: List
 								</small>

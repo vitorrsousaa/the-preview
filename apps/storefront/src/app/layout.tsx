@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Poppins, Roboto } from "next/font/google";
 import "./styles.css";
 
@@ -12,6 +13,11 @@ export const roboto = Roboto({
 	subsets: ["latin"],
 	variable: "--font-roboto",
 });
+
+export const metadata: Metadata = {
+	title: "the preview",
+	description: "oie",
+};
 
 export default function RootLayout({
 	children,
